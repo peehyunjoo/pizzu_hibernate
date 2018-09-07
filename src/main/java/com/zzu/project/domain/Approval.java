@@ -1,5 +1,7 @@
 package com.zzu.project.domain;
 
+import java.sql.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,5 +23,6 @@ public class Approval {
 	private String title;
 	private String content;
 	private int price;
+	private Date reg_date;
 
 }

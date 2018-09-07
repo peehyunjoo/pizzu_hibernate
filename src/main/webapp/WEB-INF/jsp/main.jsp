@@ -6,6 +6,8 @@
 <meta charset="EUC-KR">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.1.3/cerulean/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/main.css">
+<script type="text/javascript" href="/css/main.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
