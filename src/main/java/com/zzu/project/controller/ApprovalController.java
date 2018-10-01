@@ -1,6 +1,5 @@
 package com.zzu.project.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +8,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.zzu.project.domain.Admission;
 import com.zzu.project.domain.Approval;
+import com.zzu.project.persistence.AdmissionRepository;
 import com.zzu.project.persistence.ApprovalRepository;
 import com.zzu.project.persistence.ListRepository;
 
@@ -24,6 +26,9 @@ public class ApprovalController {
 	
 	@Autowired
 	private ApprovalRepository repo;
+	
+	@Autowired
+	private AdmissionRepository adm_repo;
 	@Autowired
 	private ListRepository list_repo;
 	
@@ -47,4 +52,22 @@ public class ApprovalController {
 		model.addAttribute("list",list);
 		
 	}
+	
+	@GetMapping("/admission")
+	public void admission(Model model, @RequestParam(value = "idx")int idx) {
+		int res_idx = idx;
+		log.info("^^^^"+res_idx);
+		List<Approval> list = list_repo.findApprovalByIdx(res_idx);
+		log.info("******"+list);
+		model.addAttribute("admission",list);
+	}
+	
+	@PostMapping("/admission")
+	public String admission(@ModelAttribute("vo")Admission vo, RedirectAttributes rttr) {
+		log.info("admission=====>"+vo);
+		adm_repo.save(vo);
+		rttr.addFlashAttribute("msg","success");
+		return "list";
+	}
+	
 }
